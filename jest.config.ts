@@ -7,5 +7,8 @@ export default {
   preset: 'ts-jest',
   collectCoverage: true,
   coverageDirectory: "coverage",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: [
+    "<rootDir>/setupTests.ts"
+  ]
 };

@@ -1,28 +1,42 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { Pagination } from './components/pagination';
+import { usePagination } from './hooks/use-pagination';
 
 interface User {
-  login: string
-  avatar_url: string
+  login: string;
+  avatar_url: string;
 }
 
 interface Repository {
-  id: number
-  owner: User
-  name: string
-  html_url: string
-  description: string
+  id: number;
+  owner: User;
+  name: string;
+  html_url: string;
+  description: string;
 }
+
+const pageSize = 10;
 
 function App() {
   const [repositories, setRepositories] = useState<Array<Repository>>([]);
+  const { currentPage, handlePageChange, startIndex, endIndex } = usePagination(
+    {
+      totalCount: repositories.length,
+      pageSize,
+    }
+  );
 
   useEffect(() => {
     fetch('https://api.github.com/repositories')
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((data: Array<Repository>) => {
-        setRepositories(data)
-      })
-  }, [])
+        setRepositories(data);
+      });
+  }, []);
+
+  const currentTableData = useMemo(() => {
+    return repositories.slice(startIndex, endIndex);
+  }, [currentPage, repositories]);
 
   return (
     <div className="App">
@@ -37,7 +51,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {repositories.map((repository) =>
+          {currentTableData.map(repository => (
             <tr key={repository.id}>
               <td>{repository.owner.avatar_url}</td>
               <td>{repository.owner.login}</td>
@@ -45,11 +59,17 @@ function App() {
               <td>{repository.html_url}</td>
               <td>{repository.description}</td>
             </tr>
-          )}
+          ))}
         </tbody>
       </table>
+      <Pagination
+        currentPage={currentPage}
+        totalCount={repositories.length}
+        pageSize={pageSize}
+        onPageChange={handlePageChange}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

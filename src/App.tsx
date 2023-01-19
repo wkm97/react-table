@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Pagination } from './components/pagination';
+import { Pagination } from './components/pagination/pagination';
 import { AvailableField, Repository, searchRepositories } from './github-data';
 import { usePagination } from './hooks/use-pagination';
 

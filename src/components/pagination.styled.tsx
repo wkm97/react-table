@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PaginationContainer = styled.li`
   display: flex;
+  padding: 0.75rem;
 `;
 
 interface PaginationItemProps {
@@ -24,8 +25,12 @@ export const PaginationItem = styled.ul<PaginationItemProps>`
   font-size: 13px;
   min-width: 32px;
   cursor: pointer;
+  border: 1px solid transparent;
   ${props => props.disabled && 'pointer-events: none;'}
-  ${props => props.selected && 'background-color: rgba(0, 0, 0, 0.08);'}
+  ${props => props.selected && 'background-color: var(--secondary-color-500);'}
+  &:hover {
+    border: 1px solid var(--slate-color-500);
+  }
 `;
 
 const Arrow = styled.span`

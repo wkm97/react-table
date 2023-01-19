@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
 import { Pagination } from './components/pagination';
 import { usePagination } from './hooks/use-pagination';
 
@@ -16,6 +17,14 @@ interface Repository {
 }
 
 const pageSize = 10;
+
+const AppContainer = styled.div`
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 function App() {
   const [repositories, setRepositories] = useState<Array<Repository>>([]);
@@ -39,7 +48,7 @@ function App() {
   }, [currentPage, repositories]);
 
   return (
-    <div className="App">
+    <AppContainer>
       <table>
         <thead>
           <tr>
@@ -68,7 +77,7 @@ function App() {
         pageSize={pageSize}
         onPageChange={handlePageChange}
       />
-    </div>
+    </AppContainer>
   );
 }
 

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Pagination } from './pagination';
 
 describe('Pagination when siblingCount = 1 and page pills = 6', () => {
@@ -89,5 +90,24 @@ describe('Pagination when siblingCount = 1 and page pills = 6', () => {
     paginationItemNumbers.forEach((item, i) => {
       expect(item.innerHTML).toEqual(String(expected[i]));
     });
+  });
+
+  it('total page count is less than page pills available', async () => {
+    const user = userEvent.setup();
+    render(
+      <Pagination
+        currentPage={1}
+        pageSize={10}
+        totalCount={60}
+        onPageChange={mockedPageChange}
+      />
+    );
+
+    const paginationItemNumbers = screen.queryAllByTestId(
+      'pagination-item-number'
+    );
+    const targetPageNumber = 3;
+    await user.click(paginationItemNumbers[targetPageNumber - 1]);
+    expect(mockedPageChange).toBeCalledWith(targetPageNumber);
   });
 });

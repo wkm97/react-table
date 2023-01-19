@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { usePagination } from '../hooks/use-pagination';
 import {
   LeftArrow,
   PaginationContainer,

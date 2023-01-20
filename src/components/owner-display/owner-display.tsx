@@ -24,8 +24,8 @@ interface OwnerDisplayProps {
 
 export const OwnerDisplay = ({ name, avatar_url }: OwnerDisplayProps) => {
   return (
-    <Container>
-      <Thumbnail src={avatar_url} />
+    <Container data-testid="owner-display">
+      <Thumbnail data-testid="owner-display-thumbnail" src={avatar_url} />
       {name}
     </Container>
   );

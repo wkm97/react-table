@@ -29,7 +29,7 @@ export const PaginationItem = styled.ul<PaginationItemProps>`
   ${props => props.disabled && 'pointer-events: none;'}
   ${props => props.selected && 'background-color: var(--secondary-color-500);'}
   &:hover {
-    border: 1px solid var(--slate-color-500);
+    border: 1px solid var(--slate-color-300);
   }
 `;
 
@@ -48,7 +48,7 @@ const Arrow = styled.span`
 `;
 
 export const LeftArrow = styled(Arrow)`
-  transform: rotate(-135deg) translate(-50%);
+  transform: rotate(-135deg) translate(-25%);
 `;
 
 export const RightArrow = styled(Arrow)`

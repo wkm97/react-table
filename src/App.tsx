@@ -43,7 +43,7 @@ function App() {
 
   const currentTableData = useMemo(() => {
     return displayRepositories.slice(startIndex, endIndex);
-  }, [currentPage, displayRepositories]);
+  }, [displayRepositories, startIndex, endIndex]);
 
   useEffect(() => {
     fetch('https://api.github.com/repositories')

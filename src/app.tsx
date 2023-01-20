@@ -110,7 +110,7 @@ function App() {
                     />
                   </Table.TD>
                   <Table.TD width="15%">{repository.name}</Table.TD>
-                  <Table.TD width="25%">{repository.html_url}</Table.TD>
+                  <Table.TD width="20%">{repository.html_url}</Table.TD>
                   <Table.TD width="50%">{repository.description}</Table.TD>
                 </Table.TR>
               ))}

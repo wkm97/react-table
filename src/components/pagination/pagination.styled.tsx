@@ -27,7 +27,9 @@ export const PaginationItem = styled.ul<PaginationItemProps>`
   cursor: pointer;
   border: 1px solid transparent;
   ${props => props.disabled && 'pointer-events: none;'}
-  ${props => props.selected && 'background-color: var(--secondary-color-500);'}
+  ${props =>
+    props.selected &&
+    'background-color: var(--secondary-color-500); color: var(--slate-color-200);'}
   &:hover {
     border: 1px solid var(--slate-color-300);
   }

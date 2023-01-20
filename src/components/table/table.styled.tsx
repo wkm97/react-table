@@ -40,8 +40,6 @@ export const TD = styled.td`
   max-width: 0;
   ${props => props.width && `width: ${props.width};`}
   padding: 12px 15px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   height: 14px;
+  word-wrap: break-word;
 `;

@@ -7,6 +7,7 @@ import { Select } from './components/selection.styled';
 import { Table } from './components/table/table';
 import { AvailableField, Repository, searchRepositories } from './github-data';
 import { usePagination } from './hooks/use-pagination';
+import { EmptyDataWarning } from './components/warning.styled';
 
 const pageSize = 10;
 
@@ -82,38 +83,43 @@ function App() {
           onChange={handleInput}
         />
       </FormContainer>
-      {currentTableData.length === 0 ?? <h1>NO DATA</h1>}
-      <Table>
-        <Table.Head>
-          <Table.TR>
-            <Table.TH>Owner</Table.TH>
-            <Table.TH>Name</Table.TH>
-            <Table.TH>Url</Table.TH>
-            <Table.TH>Description</Table.TH>
-          </Table.TR>
-        </Table.Head>
-        <Table.Body>
-          {currentTableData.map(repository => (
-            <Table.TR key={repository.id}>
-              <Table.TD width="15%">
-                <OwnerDisplay
-                  avatar_url={repository.owner.avatar_url}
-                  name={repository.owner.login}
-                />
-              </Table.TD>
-              <Table.TD width="15%">{repository.name}</Table.TD>
-              <Table.TD width="25%">{repository.html_url}</Table.TD>
-              <Table.TD width="50%">{repository.description}</Table.TD>
-            </Table.TR>
-          ))}
-        </Table.Body>
-      </Table>
-      <Pagination
-        currentPage={currentPage}
-        totalCount={displayRepositories.length}
-        pageSize={pageSize}
-        onPageChange={handlePageChange}
-      />
+      {currentTableData.length === 0 ? (
+        <EmptyDataWarning>No data available.</EmptyDataWarning>
+      ) : (
+        <>
+          <Table>
+            <Table.Head>
+              <Table.TR>
+                <Table.TH>Owner</Table.TH>
+                <Table.TH>Name</Table.TH>
+                <Table.TH>Url</Table.TH>
+                <Table.TH>Description</Table.TH>
+              </Table.TR>
+            </Table.Head>
+            <Table.Body>
+              {currentTableData.map(repository => (
+                <Table.TR key={repository.id}>
+                  <Table.TD width="15%">
+                    <OwnerDisplay
+                      avatar_url={repository.owner.avatar_url}
+                      name={repository.owner.login}
+                    />
+                  </Table.TD>
+                  <Table.TD width="15%">{repository.name}</Table.TD>
+                  <Table.TD width="25%">{repository.html_url}</Table.TD>
+                  <Table.TD width="50%">{repository.description}</Table.TD>
+                </Table.TR>
+              ))}
+            </Table.Body>
+          </Table>
+          <Pagination
+            currentPage={currentPage}
+            totalCount={displayRepositories.length}
+            pageSize={pageSize}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </AppContainer>
   );
 }

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Pagination } from './components/pagination/pagination';
+import { SearchBar } from './components/search-bar.styled';
+import { Select } from './components/selection.styled';
 import { Table } from './components/table/table';
 import { AvailableField, Repository, searchRepositories } from './github-data';
 import { usePagination } from './hooks/use-pagination';
@@ -13,6 +15,12 @@ const AppContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const FormContainer = styled.form`
+  display: flex;
+  width: 60%;
+  gap: 0.4rem;
 `;
 
 function App() {
@@ -53,20 +61,20 @@ function App() {
 
   return (
     <AppContainer>
-      <form>
-        <select
+      <FormContainer>
+        <Select
           name="targetField"
           id="targetField"
           placeholder="Choose field..."
           defaultValue="name"
           onChange={handleTargetFieldChange}
         >
-          <option value="owner">owner</option>
-          <option value="name">name</option>
-          <option value="description">description</option>
-        </select>
-        <input type="text" placeholder="Search.." onChange={handleInput} />
-      </form>
+          <option value="owner">Owner</option>
+          <option value="name">Name</option>
+          <option value="description">Description</option>
+        </Select>
+        <SearchBar type="text" placeholder="Search.." onChange={handleInput} />
+      </FormContainer>
       {currentTableData.length === 0 ?? <h1>NO DATA</h1>}
       <Table>
         <Table.Head>

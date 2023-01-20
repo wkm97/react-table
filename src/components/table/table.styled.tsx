@@ -1,3 +1,4 @@
+// reference: https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l
 import styled from 'styled-components';
 
 export const StyledTable = styled.table`

@@ -1,3 +1,4 @@
+// reference: https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
 import { useMemo } from 'react';
 import {
   LeftArrow,

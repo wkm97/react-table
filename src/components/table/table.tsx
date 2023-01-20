@@ -1,3 +1,4 @@
+// reference: https://josemukorivo.com/blog/create-a-reusable-table-with-react-styled-components-and-compound-components-design-pattern-40cn
 import React from 'react';
 import { StyledTable, THead, TBody, TFoot, TH, TR, TD } from './table.styled';
 

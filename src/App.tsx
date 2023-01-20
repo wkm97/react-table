@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Pagination } from './components/pagination/pagination';
+import { OwnerDisplay } from './components/owner-display/owner-display';
 import { SearchBar } from './components/search-bar.styled';
 import { Select } from './components/selection.styled';
 import { Table } from './components/table/table';
@@ -10,11 +11,12 @@ import { usePagination } from './hooks/use-pagination';
 const pageSize = 10;
 
 const AppContainer = styled.div`
-  margin: 2rem;
+  margin: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 `;
 
 const FormContainer = styled.form`
@@ -73,24 +75,32 @@ function App() {
           <option value="name">Name</option>
           <option value="description">Description</option>
         </Select>
-        <SearchBar type="text" placeholder="Search.." onChange={handleInput} />
+        <SearchBar
+          type="text"
+          autoFocus
+          placeholder="Search.."
+          onChange={handleInput}
+        />
       </FormContainer>
       {currentTableData.length === 0 ?? <h1>NO DATA</h1>}
       <Table>
         <Table.Head>
           <Table.TR>
-            <Table.TH>avatar</Table.TH>
-            <Table.TH>owner</Table.TH>
-            <Table.TH>name</Table.TH>
-            <Table.TH>url</Table.TH>
-            <Table.TH>description</Table.TH>
+            <Table.TH>Owner</Table.TH>
+            <Table.TH>Name</Table.TH>
+            <Table.TH>Url</Table.TH>
+            <Table.TH>Description</Table.TH>
           </Table.TR>
         </Table.Head>
         <Table.Body>
           {currentTableData.map(repository => (
             <Table.TR key={repository.id}>
-              <Table.TD width="0%">{repository.owner.avatar_url}</Table.TD>
-              <Table.TD width="15%">{repository.owner.login}</Table.TD>
+              <Table.TD width="15%">
+                <OwnerDisplay
+                  avatar_url={repository.owner.avatar_url}
+                  name={repository.owner.login}
+                />
+              </Table.TD>
               <Table.TD width="15%">{repository.name}</Table.TD>
               <Table.TD width="25%">{repository.html_url}</Table.TD>
               <Table.TD width="50%">{repository.description}</Table.TD>

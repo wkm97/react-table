@@ -9,5 +9,5 @@ export const Select = styled.select`
   outline: 0;
   background-color: var(--slate-color-100);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  color: var(--slate-color-900);
+  color: var(--slate-color-700);
 `;

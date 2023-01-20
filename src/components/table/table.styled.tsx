@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const StyledTable = styled.table`
   border-collapse: collapse;
-  margin: 25px 0;
   font-size: 0.9em;
+  font-weight: 500;
   font-family: sans-serif;
   min-width: 400px;
   width: 100%;

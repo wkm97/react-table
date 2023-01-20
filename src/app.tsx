@@ -55,10 +55,14 @@ function App() {
   }, []);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // reset page to 1 when searching
+    handlePageChange(1);
     setInputText(e.target.value);
   };
 
   const handleTargetFieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // reset page to 1 when searching
+    handlePageChange(1);
     setTargetField(e.target.value.toLowerCase() as AvailableField);
   };
 
